@@ -1,15 +1,28 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: User
- * Date: 28.01.2019
- * Time: 17:37
- */
-
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 
-class PostController
+class PostController extends Controller
 {
+    public function PostBySlug()
+    {
+        return view('layouts.secondary',[
+            'page' => 'pages.post'
+        ]);
+    }
 
+    public function PostsByTag()
+    {
+        return view('layouts.primary', [
+           'page' => 'pages.post'
+        ]);
+    }
+
+    public function PostsByCategory()
+    {
+        return view('layouts.primary', [
+          'page' => 'pages.post'
+        ]);
+    }
 }

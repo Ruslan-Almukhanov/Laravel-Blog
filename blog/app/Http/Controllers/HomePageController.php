@@ -8,8 +8,9 @@ class HomePageController extends Controller
 {
     public function HomePage()
     {
-        return view('layouts.two-column',[
-            'page' =>'pages.main'
+        return view('layouts.primary',[
+            'page' => 'pages.main',
+            'title' => 'Главная'
         ]);
     }
 }

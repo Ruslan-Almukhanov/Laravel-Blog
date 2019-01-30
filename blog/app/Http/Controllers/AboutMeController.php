@@ -1,15 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: User
- * Date: 29.01.2019
- * Time: 11:18
- */
-
 namespace App\Http\Controllers;
 
 
-class AboutMeController
+class AboutMeController extends Controller
 {
-
+    public function AboutMe()
+    {
+        return view('layouts.primary',[
+           'page' => 'pages.about-me',
+            'title' => 'Обо мне'
+        ]);
+    }
 }
