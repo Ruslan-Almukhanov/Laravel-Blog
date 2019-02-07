@@ -44,7 +44,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-6">
                 <div class="copyrights--right">
-                    Blog HTML Template © Copyright 2015.
+                    Blog HTML Template © Copyright {{ $year }}.
                 </div>
             </div>
         </div>

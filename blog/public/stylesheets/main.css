@@ -72,6 +72,10 @@ sub,sup {
     vertical-align: baseline
 }
 
+.date-time {
+    text-align: center;
+}
+
 sup {
     top: -.5em
 }

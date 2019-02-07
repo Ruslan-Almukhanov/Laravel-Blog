@@ -10,3 +10,8 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <h5 class="date-time">
+        {{ $date }}
+    </h5>
+</div>
