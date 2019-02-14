@@ -7,7 +7,7 @@
                 <form class="form-horizontal" method="POST" action="/sign-in">
                     @csrf
                     <div class="form-group">
-                        {{$error}}
+                        {{$error ?? ''}}
                         @if ($errors->has('email'))
                             <p style="color:red">{{ $errors->first('email') }}</p>
                         @endif

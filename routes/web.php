@@ -11,17 +11,7 @@
 |
 */
 
-//Admin form
-Route::get('/lar-admin', 'AuthController@adminSignInPage')->name('admin');
-Route::post('/lar-admin', 'AuthController@adminSignUp')->name('adminPost');
 
-//Admin console
-Route::prefix('admin')->group(function () {
-    Route::get('/{id?}', 'AdminController@mainPage')->name('admin-main');
-    Route::post('/{id?}', 'AdminController@addMenu')->name('admin-menu');
-
-
-});
 //Home Page Route
 Route::get('/', 'HomePageController@homePage' )->name('home');
 
