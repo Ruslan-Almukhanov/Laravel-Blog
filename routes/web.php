@@ -20,8 +20,11 @@ Route::prefix('post')->group(function () {
     Route::get('/{slug}', 'PostController@postBySlug')->name('postSlug');
     Route::get('/tag/{tag}', 'PostController@postsByTag')->name('postTag');
     Route::get('/category/{category}', 'PostController@postsByCategory')->name('postCategory');
-
 });
+
+//Create Post
+Route::get('/create', 'ManagePostController@indexPost')->name('indexPost');
+Route::post('/create', 'ManagePostController@createPost')->name('createPost');
 
 //About-me Route
 Route::get('/about', 'AboutMeController@aboutMe')->name('aboutMe');;

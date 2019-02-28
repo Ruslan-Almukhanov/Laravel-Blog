@@ -5088,12 +5088,6 @@ h1+h3,h2+h3 {
     margin: -8px 0 30px 0
 }
 
-@media (min-width: 768px) {
-    .front-page-title {
-        margin-top:-30px
-    }
-}
-
 .search-subtitle {
     margin: -20px 0 -10px 0
 }
@@ -6389,6 +6383,11 @@ font-family: 'Roboto Condensed', sans-serif;
 
 .post-content--front-page {
     margin-bottom: 30px
+}
+
+.post-content--front-page img {
+    width: 100%;
+    height: auto;
 }
 
 .post-content--front-page h3 {

@@ -9,7 +9,7 @@ class MainMenu
 {
     protected function getCategories()
     {
-        return DB::table('menu')
+        return DB::table('menus')
             ->where('parent_id')
             ->orderBy('weight')
             ->get(['id', 'caption', 'link']);
@@ -17,7 +17,7 @@ class MainMenu
 
     protected function  getItems($parentId)
     {
-        return DB::table('menu')
+        return DB::table('menus')
             ->whereNotNull('parent_id')
             ->where('parent_id', $parentId)
             ->orderBy('weight')
