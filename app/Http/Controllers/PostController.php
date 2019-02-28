@@ -5,6 +5,10 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function posts()
+    {
+
+    }
     public function postBySlug()
     {
         return view('layouts.secondary',[

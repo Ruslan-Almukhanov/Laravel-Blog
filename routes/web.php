@@ -11,17 +11,7 @@
 |
 */
 
-//Admin form
-Route::get('/lar-admin', 'AuthController@adminSignInPage')->name('admin');
-Route::post('/lar-admin', 'AuthController@adminSignUp')->name('adminPost');
 
-//Admin console
-Route::prefix('admin')->group(function () {
-    Route::get('/{id?}', 'AdminController@mainPage')->name('admin-main');
-    Route::post('/{id?}', 'AdminController@addMenu')->name('admin-menu');
-
-
-});
 //Home Page Route
 Route::get('/', 'HomePageController@homePage' )->name('home');
 
@@ -30,8 +20,11 @@ Route::prefix('post')->group(function () {
     Route::get('/{slug}', 'PostController@postBySlug')->name('postSlug');
     Route::get('/tag/{tag}', 'PostController@postsByTag')->name('postTag');
     Route::get('/category/{category}', 'PostController@postsByCategory')->name('postCategory');
-
 });
+
+//Create Post
+Route::get('/create', 'ManagePostController@indexPost')->name('indexPost');
+Route::post('/create', 'ManagePostController@createPost')->name('createPost');
 
 //About-me Route
 Route::get('/about', 'AboutMeController@aboutMe')->name('aboutMe');;
