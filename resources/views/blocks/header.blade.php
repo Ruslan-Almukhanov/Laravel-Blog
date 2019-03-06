@@ -2,7 +2,7 @@
 <div class="container">
     <div class="logo pull-left">
         <a href="index.html">
-            <img src="images/logo.png" alt="Logo" width="352" height="140">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo" width="352" height="140">
         </a>
     </div>
     <div class="navbar-header">
@@ -17,6 +17,11 @@
         <div class="collapse  navbar-collapse" id="readable-navbar-collapse">
             <ul class="navigation">
                 {!! $mainMenu ?? '' !!}
+                @if(Auth::check())
+                    <li>
+                        <a href="{{ url('/logout') }}" class="btn-logout" id="logged">Выход</a>
+                    </li>
+                @endif
             </ul>
         </div>
     </nav>

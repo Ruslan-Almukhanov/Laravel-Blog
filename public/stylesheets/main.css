@@ -255,7 +255,6 @@ a {
 }
 
 .error {
-    border: 2px solid red;
     margin-top: 4px;
     color: red;
 }
@@ -5086,6 +5085,28 @@ hr {
 
 h1+h3,h2+h3 {
     margin: -8px 0 30px 0
+}
+
+.auhor-rights {
+    margin-bottom: 25px;
+}
+
+.auhor-rights a {
+    border: none;
+    margin: 0 10px;
+}
+
+.auhor-rights .edit-post {
+    color: #0181FD;
+}
+
+.auhor-rights .delete-post {
+    color: #C60D61;
+}
+
+.widget-author .alert {
+    color: red;
+    margin-bottom: 10px;
 }
 
 .search-subtitle {

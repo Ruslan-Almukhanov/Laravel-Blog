@@ -49,6 +49,16 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="col-sm-4 control-label">Дата рождения</label>
+                        <div class="col-sm-8">
+                            <input type="date" class="form-control" id="register_date" name="date" placeholder="+7(999)123-45-67" value="{{old('phone','')}}">
+                            @if ($errors->has('date'))
+                                <div class="error">{{ $errors->first('date') }}</div>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label class="col-sm-4 control-label">Мобильный телефон</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="register_phone" name="phone" placeholder="+7(999)123-45-67" value="{{old('phone','')}}">
