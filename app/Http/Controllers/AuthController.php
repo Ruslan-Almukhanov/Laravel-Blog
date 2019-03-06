@@ -3,35 +3,16 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\RegisterRequest;
+use App\Models\Profile;
+use App\Models\User;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
-    public function adminSignInPage() {
-        return view('pages.admin',[
-            'title' => 'Вход'
-        ]);
-    }
-
-    public function adminSignUp(RegisterRequest $request) {
-
-        $input = $request->all();
-
-        $error = '';
-
-        $user = DB::table('admins')->where('email', $request->input('email'))->first();
-
-        if(!$user) {
-            $error = 'не верный логин';
-        } else if($request->input('password') != $user->password ) {
-            $error = 'Не верный пароль';
-        } else {
-            return redirect()->route('admin-main');
-        }
-    }
-
-    public function signUp()
+    public function registerForm()
     {
         return view('layouts.secondary',[
             'page' => 'pages.registration',
@@ -39,29 +20,32 @@ class AuthController extends Controller
         ]);
     }
 
-    public function signUpCheckData(RegisterRequest $request)
+    public function registerPost(RegisterRequest $request)
     {
-
         $input = $request->all();
 
-        DB::table('users')->insert([
-            'email' => $request->input('email'),
-            'name' => $request->input('name'),
-            'password' => $request->input('password'),
-            'password_confirmation' => $request->input('password_confirmation'),
-            'phone' => $request->input('phone'),
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s")
-
+        $user = User::create([
+            'email' => $input['email'],
+            'password' => password_hash($input['password'],PASSWORD_ARGON2I),
+            'password_confirmation' => $input['password_confirmation'],
         ]);
 
-        return view('layouts.secondary',[
-           'page' => 'pages.registration',
-            'title' => 'Регистрация'
+        $profile = new Profile([
+            'name' => $input['name'],
+            'phone' => $input['phone'],
+            'birthdate' => $input['date'],
         ]);
+
+        $user->profile()->save($profile);
+
+        return redirect()->route('login');
     }
 
-    public function signIn()
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+
+    public function login()
     {
         return view('layouts.secondary',[
            'page' => 'pages.sign-in',
@@ -69,31 +53,25 @@ class AuthController extends Controller
         ]);
     }
 
-    public function signInCheckData(Request $request)
+    public function loginPost(Request $request)
     {
-        $validatedData = $request->validate([
-            'email' => 'required|email|',
-            'password' => 'required|min:8|'
-        ]);
+        $remember = $request->input('remember') ? true : false;
 
-        $input = $request->all();
+        $authResult = Auth::attempt([
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ], $remember);
 
-        $error = Null;
-
-        $user = DB::table('users')->where('email', $request->input('email'))->first();
-
-        if(!$user) {
-            $error = 'Пользователь не найден';
-        } else if($request->input('password') != $user->password ) {
-            $error = 'Не верный пароль';
+        if ($authResult) {
+            return redirect()->route('indexPost');
         } else {
-            return redirect()->route('home');
+            return redirect()->back()->with('authError', 'Неправильный логин или пароль');
         }
+    }
 
-        return view('layouts.secondary',[
-            'page' => 'pages.sign-in',
-            'error' => $error,
-            'title' => 'Вход'
-        ]);
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('home');
     }
 }

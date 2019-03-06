@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="images/favicon.png">
     <title>Мой Блог {{ isset($title) ? "| $title" : '' }}</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,400italic|Roboto:400,700,500|Open+Sans:400,600&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="stylesheets/main.css?1" />
+    <link rel="stylesheet" href="{{ asset('stylesheets/main.css?1') }}" />
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -29,6 +29,6 @@
 @section('footer')
 @show
 
-<script src="js/main.js"></script>
+<script src="{{ asset('js/main.js')}}"></script>
 </body>
 </html>

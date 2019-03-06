@@ -6,8 +6,12 @@
                 <p>Для продолжения необходимо ввести логин и пароль</p>
                 <form class="form-horizontal" method="POST" action="/sign-in">
                     @csrf
+                    @if (Session::has('authError'))
+                        <p class="alert">
+                            {!! Session::get('authError') !!}
+                        </p>
+                    @endif
                     <div class="form-group">
-                        {{$error}}
                         @if ($errors->has('email'))
                             <p style="color:red">{{ $errors->first('email') }}</p>
                         @endif

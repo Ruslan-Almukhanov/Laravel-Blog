@@ -30,15 +30,23 @@
                 </h2>
                 <h3>{{ $post->preview }}</h3>
             </div>
-            <a href="/post">
+            <a href="post/{{ $post->id }}/{{ $post->slug }}">
                 <div class="read-more">
                     Читать далее <span class="glyphicon glyphicon-chevron-right"></span>
                     <div class="comment-icon-counter">
                         <span class="glyphicon glyphicon-comment comment-icon"></span>
-                        <span class="comment-counter">10</span>
+                        <span class="comment-counter"></span>
                     </div>
                 </div>
             </a>
+            <div class="auhor-rights">
+                <a href="/post/edit/{{ $post->id }}" class="edit-post">
+                    Редактировать
+                </a>
+                <a href="/post/delete/{{ $post->id }}" class="delete-post">
+                    Удалить
+                </a>
+            </div>
         </div>
             @endforeach
     </div>
